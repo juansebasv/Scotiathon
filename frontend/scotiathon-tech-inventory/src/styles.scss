@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+    font-family: Scotiabank-Regular;
+    src: url(assets/fonts/WOFF/Scotia_W_Rg.woff) format("opentype");
+}
+
+html {
+    font-family: 'Scotiabank-Regular', Roboto, "Helvetica Neue", sans-serif;;
+}
+html, body { height: 100%; background-color: #f5f6fc;}
+body { margin: 0;}
+
+.card-inv {
+    border-radius: 5px;
+    box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,.16);
+    border: none;
+    transition: all .3s ease-in-out;
+    background-color: #FFFFFF;
+}

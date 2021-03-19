@@ -1,0 +1,70 @@
+<div class="main-container">
+    <div class="filters card-inv">
+        <form [formGroup]="fg">
+            <div class="row">
+                <mat-form-field>
+                    <mat-label>Order de Compra No.</mat-label>
+                    <input matInput formControlName="buyOrder" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Factura No. </mat-label>
+                    <input matInput formControlName="billNumber" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Serial GBS</mat-label>
+                    <input matInput formControlName="gbsSerial" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Serial</mat-label>
+                    <input matInput formControlName="serial" autocomplete="off">
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field>
+                    <mat-label>Categoria</mat-label>
+                    <mat-select formControlName="category">
+                        <mat-option *ngFor="let category of categories" [value]="category">
+                            {{category.descripcion}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Marca</mat-label>
+                    <mat-select formControlName="brand">
+                        <mat-option *ngFor="let brand of brands" [value]="brand">
+                            {{brand}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Modelo</mat-label>
+                    <mat-select formControlName="model">
+                        <mat-option *ngFor="let model of models" [value]="model">
+                            {{model.modelo}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Centro de Costo</mat-label>
+                    <mat-select formControlName="costCenter">
+                        <mat-option *ngFor="let costCenter of costCenters" [value]="costCenter">
+                            {{costCenter.descripcion}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Bodega</mat-label>
+                    <mat-select formControlName="warehouse">
+                        <mat-option *ngFor="let warehouse of warehouses" [value]="warehouse">
+                            {{warehouse.nombre}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <button mat-raised-button color="warn" [disabled]="!isValid()" (click)="search()">Buscar</button>
+                <button mat-raised-button color="warn" (click)="clear()">Limpiar</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+.bill-container {
+    
+}
+
+.form-panel {
+    display: flex;
+    flex-direction: column;    
+    margin-bottom: 10px;   
+    padding: 10px 20px 10px 20px;
+}
+
+.product-container mat-form-field {
+    margin-right: 10px;
+}
+
+.fields {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; 
+}
+
+.title-form {
+    font-weight: bold;
+}
+
+.products {
+    margin-top: 10px;
+    display: flex;
+    height: 100%;
+}
+
+.products table {
+    flex: 1;
+}

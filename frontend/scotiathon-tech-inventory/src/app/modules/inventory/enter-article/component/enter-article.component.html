@@ -1,0 +1,157 @@
+<div class="container">
+    <form [formGroup]="fg">
+        <div class="bill-container card-inv form-panel fields">
+            <mat-form-field>
+                <mat-label>Order de Compra No.</mat-label>
+                <input matInput formControlName="buyOrder" required autocomplete="off">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Factura No. </mat-label>
+                <input matInput formControlName="billNumber" required autocomplete="off">
+            </mat-form-field>
+        </div>
+        <div class="product-container card-inv form-panel">
+            <div class="title-form">
+                Información de Producto
+            </div>
+            <div class="fields">
+                <mat-form-field>
+                    <mat-label>Serial Producto</mat-label>
+                    <input matInput formControlName="serial" required autocomplete="off">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Serial GBS</mat-label>
+                    <input matInput formControlName="gbsSerial" required autocomplete="off">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Categoria</mat-label>
+                    <mat-select formControlName="category" required>
+                        <mat-option *ngFor="let category of categories" [value]="category">
+                            {{category.descripcion}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Marca</mat-label>
+                    <mat-select formControlName="brand" required>
+                        <mat-option *ngFor="let brand of brands" [value]="brand">
+                            {{brand}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Modelo</mat-label>
+                    <mat-select formControlName="model" required>
+                        <mat-option *ngFor="let model of models" [value]="model">
+                            {{model.modelo}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="operation-container card-inv form-panel">
+            <div class="title-form">
+                Información de Operación
+            </div>
+            <div class="fields">
+                <mat-form-field>
+                    <mat-label>Operacion</mat-label>
+                    <mat-select formControlName="operation" required>
+                        <mat-option *ngFor="let operation of operations" [value]="operation">
+                            {{operation.descripcion}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Centro de Costo</mat-label>
+                    <mat-select formControlName="costCenter" required>
+                        <mat-option *ngFor="let costCenter of costCenters" [value]="costCenter">
+                            {{costCenter.descripcion}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Bodega</mat-label>
+                    <mat-select formControlName="warehouse" required>
+                        <mat-option *ngFor="let warehouse of warehouses" [value]="warehouse">
+                            {{warehouse.nombre}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Estado</mat-label>
+                    <mat-select formControlName="state" required>
+                        <mat-option *ngFor="let state of states" [value]="state">
+                            {{state.descripcion}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <button mat-raised-button color="warn" [disabled]="!fg.valid" (click)="addProduct()">Agregar Producto</button>
+    </form>
+    <div class="products">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!--Orden de Compra -->
+            <ng-container matColumnDef="buyOrder">
+                <th mat-header-cell *matHeaderCellDef>Orden Compra</th>
+                <td mat-cell *matCellDef="let element"> {{element.buyOrder}} </td>
+            </ng-container>
+            <!-- Factura -->
+            <ng-container matColumnDef="billNumber">
+                <th mat-header-cell *matHeaderCellDef># Factura</th>
+                <td mat-cell *matCellDef="let element"> {{element.billNumber}} </td>
+            </ng-container>
+            <!-- Serial -->
+            <ng-container matColumnDef="serial">
+                <th mat-header-cell *matHeaderCellDef>Serial</th>
+                <td mat-cell *matCellDef="let element"> {{element.serial}} </td>
+            </ng-container>
+            <!-- Category -->
+            <ng-container matColumnDef="category">
+                <th mat-header-cell *matHeaderCellDef>Categoria</th>
+                <td mat-cell *matCellDef="let element"> {{element.category.descripcion}} </td>
+            </ng-container>
+
+            <!-- Marca -->
+            <ng-container matColumnDef="brand">
+                <th mat-header-cell *matHeaderCellDef>Marca</th>
+                <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
+            </ng-container>
+
+            <!-- Modelo -->
+            <ng-container matColumnDef="model">
+                <th mat-header-cell *matHeaderCellDef>Modelo</th>
+                <td mat-cell *matCellDef="let element"> {{element.model.modelo}} </td>
+            </ng-container>
+
+            <!-- GBS Serial -->
+            <ng-container matColumnDef="gbsSerial">
+                <th mat-header-cell *matHeaderCellDef>GBS Serial</th>
+                <td mat-cell *matCellDef="let element"> {{element.gbsSerial}} </td>
+            </ng-container>
+
+            <!-- Bodega -->
+            <ng-container matColumnDef="warehouse">
+                <th mat-header-cell *matHeaderCellDef>Bodega</th>
+                <td mat-cell *matCellDef="let element"> {{element.warehouse.nombre}} </td>
+            </ng-container>
+
+            <!-- Estado -->
+            <ng-container matColumnDef="state">
+                <th mat-header-cell *matHeaderCellDef>Estado</th>
+                <td mat-cell *matCellDef="let element"> {{element.state.descripcion}} </td>
+            </ng-container>
+
+            <!-- Centro de Costo -->
+            <ng-container matColumnDef="costCenter">
+                <th mat-header-cell *matHeaderCellDef>Centro Costo</th>
+                <td mat-cell *matCellDef="let element"> {{element.costCenter.descripcion}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+    <button mat-raised-button color="warn" [disabled]="products.length == 0" (click)="saveProducts()">Guardar Productos</button>
+</div>
